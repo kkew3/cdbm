@@ -17,3 +17,8 @@ cdbm
 ```
 
 enter the [`fzf`](https://github.com/junegunn/fzf) interactive interface and select the bookmarked directory to go to.
+
+
+## Installation
+
+`source /path/to/cdbm.sh` in your `.bashrc` or `.zshrc`.
