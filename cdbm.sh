@@ -39,18 +39,13 @@ Use \`cdbm -h\` or \`cdbm --help\` to show this message and exit.
 EOF
 	else
 		if [ ! -s "$bmfile" ]; then
-			echo "Bookmark file \"$bmfile\" is empty. Use \`cdbm e\` to add"
+			echo "Bookmark file \"$bmfile\" is empty. Use \`cdbm -e\` to add"
 			echo "some bookmarks."
 			return 2
 		fi
 
-		local selkey
-
-		if [ -z "$1" ]; then
-			selkey="$(cut -d' ' -f1 < "$bmfile" | fzf --no-multi)"
-		else
-			selkey="$(cut -d' ' -f1 < "$bmfile" | fzf --no-multi --query="$1")"
-		fi
+		local selkey="$(cut -d' ' -f1 < "$bmfile" \
+			| fzf --no-multi --exit-0 --select-1 --query="$1")"
 		if [ -z "$selkey" ]; then
 			return 130
 		fi
@@ -68,7 +63,9 @@ for line in sys.stdin:
 			return 130
 		fi
 
-		printf "%s\n" "$selpath"
-		cd "$selpath"
+		if [ "$selpath" != "$(pwd)" ]; then
+			printf "%s\n" "$selpath"
+			cd "$selpath"
+		fi
 	fi
 }
