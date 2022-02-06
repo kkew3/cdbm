@@ -16,18 +16,15 @@ cdbm()
 
 	local ed="${EDITOR:-vim}"
 
+	# # reference: https://stackoverflow.com/a/54755784/7881370
+	local cdbm_basedir="$(dirname "${BASH_SOURCE[0]:-${(%):-%x}}")"
+
 	if [ "$1" = "-e" ]; then
 		# edit the bookmark file
 		"$ed" "$bmfile"
 	elif [ "$1" = "-l" ]; then
 		# print the bookmark file, while highlighting the bm names
-		python3 -c "
-import sys
-for line in sys.stdin:
-    tokens = line.split(maxsplit=1)
-    sys.stdout.write('\\033[1;31m{}\\033[0m {}'.format(
-        tokens[0], ''.join(tokens[1:])))
-" < "$bmfile"
+		python3 "$cdbm_basedir/list_cdbm.py" "$bmfile"
 	elif [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
 		# show help
 		cat << EOF
@@ -50,15 +47,7 @@ EOF
 			return 130
 		fi
 
-		local selpath="$(python3 -c "
-import sys
-for line in sys.stdin:
-	tokens = line.rstrip('\\n').split(maxsplit=1)
-	key = tokens[0]
-	if key == '$selkey':
-		print('' if len(tokens) <= 1 else tokens[1])
-		break
-" < "$bmfile")"
+		local selpath="$(python3 "$cdbm_basedir/select_cdbm.py" "$bmfile" "$selkey")"
 		if [ -z "$selpath" ]; then
 			return 130
 		fi
