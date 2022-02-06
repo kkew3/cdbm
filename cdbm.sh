@@ -49,7 +49,7 @@ EOF
 
 		local selpath="$(python3 "$cdbm_basedir/select_cdbm.py" "$bmfile" "$selkey")"
 		if [ -z "$selpath" ]; then
-			return 130
+			return 4
 		fi
 
 		if [ "$selpath" != "$(pwd)" ]; then
