@@ -1,5 +1,15 @@
 import sys
 
+if sys.platform == 'win32':
+    import colorama
+    colorama.init()
+else:
+    try:
+        import colorama
+    except ImportError:
+        pass
+    else:
+        colorama.init()
 
 cdbm_file = sys.argv[1]
 with open(cdbm_file) as infile:
