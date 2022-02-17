@@ -41,7 +41,8 @@ EOF
 			return 2
 		fi
 
-		local selkey="$(cut -d' ' -f1 < "$bmfile" \
+		local selkey="$(sed '/^#/d' "$bmfile" \
+			| cut -d' ' -f1 \
 			| fzf --no-multi --exit-0 --select-1 --query="$1")"
 		if [ -z "$selkey" ]; then
 			return 130

@@ -8,8 +8,8 @@ cdbm -e
 
 edit the bookmark file located at `~/.cdbm`.
 The format each line is `<bookmark_name><space><directory>`.
-The `<bookmark_name>` must not contain any whitespace characters.
-The `<directory>` entry is allowed to contain whitespace characters `<space>` and `<tab>`.
+The `<bookmark_name>` must not contain any whitespace characters or `#` character.
+The `<directory>` entry is allowed to contain whitespace characters `<space>` and `<tab>` and `#` character.
 
 ```
 cdbm -l
