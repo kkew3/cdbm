@@ -28,3 +28,15 @@ enter the [`fzf`](https://github.com/junegunn/fzf) interactive interface and sel
 ## Installation
 
 `source /path/to/cdbm.sh` in your `.bashrc` or `.zshrc`.
+
+## Vim ftplugin
+
+`./cdbm.vim` contains syntax highlighting definition of `~/.cdbm`.
+To install `./cdbm.vim`, first make a symbolic link to `./cdbm.vim` under `~/.vim/bundle`.
+Then, if using [`vim-plug`](https://github.com/junegunn/vim-plug), put the following to `~/.vimrc`:
+
+```
+Plug '~/.vim/bundle/cdbm.vim'
+```
+
+Finally, run `:PlugStatus` to ensure `cdbm.vim` is loaded.
