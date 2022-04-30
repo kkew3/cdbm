@@ -16,7 +16,7 @@ cdbm()
 
 	local ed="${EDITOR:-vim}"
 
-	# # reference: https://stackoverflow.com/a/54755784/7881370
+	# reference: https://stackoverflow.com/a/54755784/7881370
 	local cdbm_basedir="$(dirname "${BASH_SOURCE[0]:-${(%):-%x}}")"
 
 	if [ "$1" = "-e" ]; then
