@@ -1,1 +1,1 @@
-autocmd BufNewFile,BufRead .cdbm set filetype=cdbm
+autocmd BufNewFile,BufRead cdbm set filetype=cdbm
