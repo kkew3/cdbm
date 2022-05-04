@@ -23,4 +23,4 @@ if freq_file and found:
         freq = {}
     freq[selected_key] = freq.get(selected_key, 0) + 1
     with open(freq_file, 'w', encoding='utf-8') as outfile:
-        json.dump(freq, outfile)
+        json.dump(freq, outfile, indent=2)
