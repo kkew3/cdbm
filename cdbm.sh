@@ -13,6 +13,8 @@ cdbm()
 
 	# set the location of the bookmark file
 	local bmfile=~/.config/cdbm/cdbm
+	local freqfile=~/.config/cdbm/freq
+	mkdir -p ~/.config/cdbm
 
 	local ed="${EDITOR:-vim}"
 
@@ -20,7 +22,6 @@ cdbm()
 	local cdbm_basedir="$(dirname "${BASH_SOURCE[0]:-${(%):-%x}}")"
 
 	if [ "$1" = "-e" ]; then
-		mkdir -p "$(dirname "$bmfile")"
 		# edit the bookmark file
 		"$ed" "$bmfile"
 	elif [ "$1" = "-l" ]; then
@@ -49,7 +50,7 @@ EOF
 			return 130
 		fi
 
-		local selpath="$(python3 "$cdbm_basedir/select_cdbm.py" "$bmfile" "$selkey")"
+		local selpath="$(python3 "$cdbm_basedir/select_cdbm.py" "$bmfile" "$selkey" "$freqfile")"
 		if [ -z "$selpath" ]; then
 			return 4
 		fi
