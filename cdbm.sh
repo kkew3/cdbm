@@ -16,6 +16,8 @@ cdbm()
 	local freqfile=~/.config/cdbm/freq
 	mkdir -p ~/.config/cdbm
 
+	[ ! -f "$bmfile" ] && touch "$bmfile"
+
 	local ed="${EDITOR:-vim}"
 
 	# reference: https://stackoverflow.com/a/54755784/7881370
