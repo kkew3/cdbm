@@ -29,13 +29,23 @@ cdbm()
 	elif [ "$1" = "-l" ]; then
 		# print the bookmark file, while highlighting the bm names
 		python3 "$cdbm_basedir/list_cdbm.py" "$bmfile"
+	elif [ "$1" = "-f" ]; then
+		# print the bm name frequencies
+		if [ -f "$freqfile" ]; then
+			if command -v bat > /dev/null; then
+				bat -ljson "$freqfile"
+			else
+				cat "$freqfile"
+			fi
+		fi
 	elif [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
 		# show help
 		cat << EOF
 Use \`cdbm [<query>]\` to jump to bookmarked directory interactively; if
 <query> is provided, jump to the bookmark matched <query>.
 Use \`cdbm -e\` to edit the bookmark file.
-Use \`cdbm -l\` to color list the bookmarks
+Use \`cdbm -l\` to color list the bookmarks.
+Use \`cdbm -f\` to check the bm name frequencies.
 Use \`cdbm -h\` or \`cdbm --help\` to show this message and exit.
 EOF
 	else
