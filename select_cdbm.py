@@ -6,7 +6,7 @@ cdbm_file = sys.argv[1]
 selected_key = sys.argv[2]
 freq_file = sys.argv[3] if len(sys.argv) >= 4 else None
 found = False
-with open(cdbm_file) as infile:
+with open(cdbm_file, encoding='utf-8') as infile:
     for line in infile:
         if not line.startswith('#'):
             tokens = line.split(maxsplit=1)

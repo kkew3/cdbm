@@ -15,7 +15,7 @@ else:
 cdbm_file = sys.argv[1]
 
 if sys.stdout.isatty():
-    with open(cdbm_file) as infile:
+    with open(cdbm_file, encoding='utf-8') as infile:
         key_width = 0
         for line in infile:
             if not line.startswith('#'):
@@ -29,5 +29,5 @@ if sys.stdout.isatty():
                 sys.stdout.write('\033[1;31m{}\033[0m {}'.format(
                     tokens[0].ljust(key_width), ''.join(tokens[1:]) or '\n'))
 else:
-    with open(cdbm_file) as infile:
+    with open(cdbm_file, encoding='utf-8') as infile:
         shutil.copyfileobj(infile, sys.stdout)
