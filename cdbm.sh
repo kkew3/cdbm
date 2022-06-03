@@ -30,14 +30,7 @@ cdbm()
 		# print the bookmark file, while highlighting the bm names
 		python3 "$cdbm_basedir/list_cdbm.py" "$bmfile"
 	elif [ "$1" = "-f" ]; then
-		# print the bm name frequencies
-		if [ -f "$freqfile" ]; then
-			if command -v bat > /dev/null; then
-				bat -ljson "$freqfile"
-			else
-				cat "$freqfile"
-			fi
-		fi
+		python3 "$cdbm_basedir/list_freq.py" "$freqfile"
 	elif [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
 		# show help
 		cat << EOF
