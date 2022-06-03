@@ -30,6 +30,7 @@ cdbm()
 	if [ "$1" = "-e" ]; then
 		# edit the bookmark file
 		"$ed" "$bmfile"
+		python3 "$cdbm_basedir/post_edit.py" "$bmfile" "$freqfile"
 	elif [ "$1" = "-l" ]; then
 		# print the bookmark file, while highlighting the bm names
 		python3 "$cdbm_basedir/list_cdbm.py" "$bmfile"
