@@ -3,7 +3,7 @@
 cdbm()
 {
 	# ensure required binaries exist
-	for cmd in python3 cat fzf vim; do
+	for cmd in python3 cat fzf; do
 		if ! command -v $cmd > /dev/null; then
 			echo "$cmd is required" >&2
 			return 1
@@ -19,6 +19,10 @@ cdbm()
 	[ ! -f "$bmfile" ] && touch "$bmfile"
 
 	local ed="${EDITOR:-vim}"
+	if [ -z "$EDITOR" ] && ! command -v vim > /dev/null; then
+		echo "vim is required" >&2
+		return 1
+	fi
 
 	# reference: https://stackoverflow.com/a/54755784/7881370
 	local cdbm_basedir="$(dirname "${BASH_SOURCE[0]:-${(%):-%x}}")"
