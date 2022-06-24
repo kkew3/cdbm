@@ -24,6 +24,12 @@ cdbm [<query>]
 
 enter the [`fzf`](https://github.com/junegunn/fzf) interactive interface and select the bookmarked directory to go to.
 
+```
+cdbm -f
+```
+
+print stats of visisted directories in descending order.
+
 
 ## Installation
 
