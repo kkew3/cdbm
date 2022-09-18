@@ -10,8 +10,11 @@ with open(cdbm_file, encoding='utf-8') as infile:
         if line.startswith('#'):
             line = line[1:]
         present_keys.add(line.split(maxsplit=1)[0])
-with open(freq_file, encoding='utf-8') as infile:
-    freq = json.load(infile)
+try:
+    with open(freq_file, encoding='utf-8') as infile:
+        freq = json.load(infile)
+except FileNotFoundError:
+    freq = {}
 visited_keys = set(freq)
 visited_keys -= present_keys  # now visited_keys are keys not present any more
 for key in visited_keys:
