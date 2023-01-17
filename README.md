@@ -35,6 +35,12 @@ print stats of visisted directories in descending order.
 
 `source /path/to/cdbm.sh` in your `.bashrc` or `.zshrc`.
 
+## Requirements
+
+On Windows, Python package `colorama` is required.
+
+Plus, on all platforms, command [`fzf`](https://github.com/junegunn/fzf) is required.
+
 ## Vim ftplugin
 
 [cdbm.vim](cdbm.vim) contains syntax highlighting definition of `~/.config/cdbm/cdbm`.
