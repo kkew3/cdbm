@@ -3,13 +3,9 @@ import shutil
 
 if sys.platform == 'win32':
     import colorama
-    colorama.init()
-else:
     try:
-        import colorama
-    except ImportError:
-        pass
-    else:
+        colorama.just_fix_windows_console()
+    except AttributeError:
         colorama.init()
 
 cdbm_file = sys.argv[1]
