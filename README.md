@@ -37,7 +37,7 @@ print stats of visisted directories in descending order.
 
 ## Requirements
 
-On Windows, Python package `colorama` is required.
+On Windows, Python package `colorama` is optionally required, for coloring the output of `cdbm -l`.
 
 Plus, on all platforms, command [`fzf`](https://github.com/junegunn/fzf) is required.
 

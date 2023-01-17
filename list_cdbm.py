@@ -2,15 +2,22 @@ import sys
 import shutil
 
 if sys.platform == 'win32':
-    import colorama
     try:
-        colorama.just_fix_windows_console()
-    except AttributeError:
-        colorama.init()
+        import colorama
+    except ImportError:
+        HAS_COLORAMA = False
+    else:
+        try:
+            colorama.just_fix_windows_console()
+        except AttributeError:
+            colorama.init()
+        HAS_COLORAMA = True
+else:
+    HAS_COLORAMA = True
 
 cdbm_file = sys.argv[1]
 
-if sys.stdout.isatty():
+if sys.stdout.isatty() and HAS_COLORAMA:
     GRAY = '\033[90m'
     BRIGHT_RED = '\033[1;31m'
     RST = '\033[0m'
