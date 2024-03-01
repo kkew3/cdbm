@@ -1,0 +1,8 @@
+cdbm [OPTION | <QUERY>]
+
+OPTION (mutually exclusive)
+
+    -h          print this message and exit
+    -l          print the bookmark definitions
+    -c          print the access counts of each bookmarked directory
+    -e          edit the bookmark definition file

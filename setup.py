@@ -4,6 +4,6 @@ setup(
     name='cdbm',
     packages=['cdbm'],
     package_dir={'': 'src'},
-    package_data={'cdbm': ['cdbm.sh']},
+    package_data={'cdbm': ['cdbm.sh', 'help.txt']},
     version='0.1.0',
 )

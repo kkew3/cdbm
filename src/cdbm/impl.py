@@ -172,15 +172,9 @@ def _delete_absent_keys_from_count_file():
 
 
 def print_help():
-    print('''\
-cdbm [OPTION | <QUERY>]
-
-OPTION (mutually exclusive)
-
-    -h          print this message and exit
-    -l          print the bookmark definitions
-    -c          print the access counts of each bookmarked directory
-    -e          edit the bookmark definition file''')
+    help_file = Path(__file__).parent / 'help.txt'
+    with open(help_file, 'rb') as infile:
+        shutil.copyfileobj(infile, sys.stdout.buffer)
 
 
 def edit_config_file():
