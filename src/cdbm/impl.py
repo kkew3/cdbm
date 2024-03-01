@@ -67,7 +67,7 @@ def print_count_file():
     count_file = files.get_count_file()
     try:
         with open(count_file, encoding='utf-8') as infile:
-            counts = list(json.load(count_file).items())
+            counts = list(json.load(infile).items())
     except FileNotFoundError:
         counts = []
     if not counts:
