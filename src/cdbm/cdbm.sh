@@ -23,11 +23,11 @@ cdbm() {
     local ret_path=
     case $fun in
         query)
-            ret_path="$(cdbm query "$q")"
+            ret_path="$(command cdbm query "$q")"
             [ -n "$ret_path" ] && cd "$ret_path"
             ;;
         *)
-            cdbm $fun
+            command cdbm $fun
             ;;
     esac
 }
