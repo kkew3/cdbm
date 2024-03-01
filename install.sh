@@ -21,18 +21,12 @@ if [ -z "$BINDIR" ]; then
 fi
 
 # === Handle python virtualenv ===
-# If current shell is in any virtualenv, deactivate it.
-if [ -n "$VIRTUAL_ENV" ]; then
-    deactivate
-fi
 # Create a python virtualenv if not yet exists.
 if [ ! -d venv ]; then
     python3 -m venv venv
 fi
-# Activate this venv.
-. venv/bin/activate
 # Install the cdbm package to this venv.
-pip install .
+./venv/bin/pip install .
 
 # === Craft the launch script and install it to BINDIR ===
 # It's assumed that there's no whitespace characters in $_PY.
