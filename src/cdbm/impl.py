@@ -225,7 +225,8 @@ def query_path(query: str):
         stdout=subprocess.PIPE).stdout.rstrip('\n')
     if not key:
         return
-    select_path(key)
+    if select_path(key):
+        increment_count_file(key)
 
 
 def init_shell():
