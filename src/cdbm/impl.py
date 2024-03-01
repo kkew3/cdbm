@@ -40,12 +40,10 @@ def select_path(key: str):
         raise KeyError('cdbm file not found')
     if not found:
         raise KeyError(f'key "{key} not found')
-
-    _increment_count_file(key)
     return found
 
 
-def _increment_count_file(key: str):
+def increment_count_file(key: str):
     """Will do nothing if count file is not allowed."""
     if not envs.allow_record_counts():
         return
