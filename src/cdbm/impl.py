@@ -236,6 +236,7 @@ def init_shell():
 
 
 def main():
+    logging.basicConfig(format='%(levelname)s: %(message)s')
     if sys.argv[1] == 'select':
         key = sys.argv[2]
         select_path(key)
