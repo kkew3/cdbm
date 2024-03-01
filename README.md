@@ -57,6 +57,7 @@ This environment variables can be exported to change the behavior of `cdbm`:
 
 - `CDBM_RECORD_COUNT`: set to `1` to enable recording directory counts (see below).
 - `CDBM_EDITOR` (default to `EDITOR`, or `vim` if `EDITOR` is not set): set to your favorite editor (e.g. `vim`) to be used in `cdbm -e` (see above).
+- `CDBM_ECHO` (default unset): set to `1` to echo the path to `cd` before `cd`
 
 ## Files and directories
 

@@ -24,7 +24,10 @@ cdbm() {
     case $fun in
         query)
             ret_path="$(command cdbm query "$q")"
-            [ -n "$ret_path" ] && cd "$ret_path"
+            if [ -n "$ret_path" ]; then
+                [ "$CDBM_ECHO" = "1" ] && echo "$ret_path"
+                cd "$ret_path"
+            fi
             ;;
         *)
             command cdbm $fun
