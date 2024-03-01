@@ -59,7 +59,7 @@ def increment_count_file(key: str):
         counts = {}
     counts[key] = counts.get(key, 0) + 1
     with open(count_file, 'w', encoding='utf-8') as outfile:
-        json.dump(counts, count_file, indent=2)
+        json.dump(counts, outfile, indent=2)
 
 
 def print_count_file():
