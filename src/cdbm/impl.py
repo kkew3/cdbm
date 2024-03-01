@@ -168,3 +168,15 @@ def _delete_absent_keys_from_count_file():
         del counts[key]
     with open(count_file, 'w', encoding='utf-8') as outfile:
         json.dump(counts, outfile, indent=2)
+
+
+def print_help():
+    print('''\
+cdbm [OPTION | <QUERY>]
+
+OPTION (mutually exclusive)
+
+    -h          print this message and exit
+    -l          print the bookmark definitions
+    -c          print the access counts of each bookmarked directory
+    -e          edit the bookmark definition file''')
