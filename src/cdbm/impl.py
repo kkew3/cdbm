@@ -187,3 +187,41 @@ def edit_config_file():
     cdbm_file = files.get_config_file()
     editor = envs.get_editor()
     subprocess.run([editor, str(cdbm_file)])
+
+
+def query_path(query: str):
+    cdbm_file = files.get_config_file()
+    keys = []
+    try:
+        with open(cdbm_file, encoding='utf-8') as infile:
+            for line in infile:
+                line = line.rstrip('\n')
+                # skip empty lines and comments
+                if not line or line.startswith('#'):
+                    continue
+                tokens = line.split(maxsplit=1)
+                # skip malformed lines
+                if len(tokens) != 2:
+                    continue
+                keys.append(tokens[0])
+    except FileNotFoundError:
+        logging.error('cdbm file is empty!')
+        return None
+    if not keys:
+        logging.error('no bookmark is found in cdbm file!')
+        return
+    stdin = ''.join(map('{}\n'.format, keys))
+    cmd = [
+        'fzf',
+        '--no-multi',
+        '--select-1',
+        '--query',
+        query,
+        '--preview=cdbm select {}',
+        '--preview-window=wrap',
+    ]
+    key = subprocess.run(
+        cmd, text=True, input=stdin, capture_output=True).stdout.rstrip('\n')
+    if not key:
+        return
+    select_path(key)
