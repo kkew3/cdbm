@@ -69,7 +69,7 @@ This directory will be used to hold:
 
 ## Companion Vim ftplugin
 
-[cdbm.vim](cdbm.vim) contains syntax highlighting definition of `~/.config/cdbm/cdbm`.
+[cdbm.vim](cdbm.vim) (or its [repo](https://github.com/kkew3/cdbm.vim)) contains syntax highlighting definition of `~/.config/cdbm/cdbm`.
 To install `cdbm.vim`, if using [`vim-plug`](https://github.com/junegunn/vim-plug), put the following to `~/.vimrc`:
 
 ```vim
