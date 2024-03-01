@@ -76,6 +76,13 @@ To install `cdbm.vim`, if using [`vim-plug`](https://github.com/junegunn/vim-plu
 Plug 'kkew3/cdbm.vim'
 ```
 
-## Similar projects
+## Related projects
 
 Until recently, I find that the idea of bookmarking directories was first sourced from [mokemokechicken's post](https://qiita.com/mokemokechicken/items/69af0db3e2cd27c1c467), which was then extended by [mollifier's cd-bookmark](https://github.com/mollifier/cd-bookmark).
+
+[ajeetdsouza's zoxide](https://github.com/ajeetdsouza/zoxide) is a popular Rust utility whose vision is to be a smarter cd command.
+It should be noted that the idea of bookmarking directories is different from Zoxide.
+With bookmarking, one may alias a directory with a totally different (simpler) name.
+For example, a directory might be named "机器学习" for clarity, but it's not convenient to type.
+One may alias it the name "ml" in the bookmark definition, and type directly "ml" to go to that directory.
+This use case cannot be achieved with Zoxide.
