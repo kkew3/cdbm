@@ -227,6 +227,12 @@ def query_path(query: str):
     select_path(key)
 
 
+def init_shell():
+    fun_def = Path(__file__).parent / 'cdbm.sh'
+    with open(fun_def, 'rb') as infile:
+        shutil.copyfileobj(infile, sys.stdout.buffer)
+
+
 def main():
     if sys.argv[1] == 'help':
         print_help()
@@ -242,3 +248,5 @@ def main():
     elif sys.argv[1] == 'query':
         query = sys.argv[2]
         query_path(query)
+    elif sys.argv[1] == 'init':
+        init_shell()
