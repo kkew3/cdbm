@@ -24,7 +24,7 @@ cdbm() {
     case $fun in
         query)
             ret_path="$(cdbm query "$q")"
-            cd "$ret_path"
+            [ -n "$ret_path" ] && cd "$ret_path"
             ;;
         *)
             cdbm $fun
