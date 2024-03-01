@@ -225,3 +225,20 @@ def query_path(query: str):
     if not key:
         return
     select_path(key)
+
+
+def main():
+    if sys.argv[1] == 'help':
+        print_help()
+    elif sys.argv[1] == 'list-bm':
+        print_config_file()
+    elif sys.argv[1] == 'list-ct':
+        print_count_file()
+    elif sys.argv[1] == 'edit-bm':
+        edit_config_file()
+    elif sys.argv[1] == 'select':
+        key = sys.argv[2]
+        select_path(key)
+    elif sys.argv[1] == 'query':
+        query = sys.argv[2]
+        query_path(query)
