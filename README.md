@@ -30,10 +30,10 @@ cdbm [<query>]
 enter the [`fzf`](https://github.com/junegunn/fzf) interactive interface and select the bookmarked directory to go to.
 
 ```
-cdbm -f
+cdbm -c
 ```
 
-print stats of visisted directories in descending order.
+print stats of visited directories in descending order.
 
 
 ## Installation
@@ -55,7 +55,7 @@ Other binaries: [`fzf`](https://github.com/junegunn/fzf) is required.
 
 This environment variables can be exported to change the behavior of `cdbm`:
 
-- `CDBM_RECORD_COUNT`: set to `1` to enable recording directory counts (see below).
+- `CDBM_RECORD_COUNT` (default unset): set to `1` to enable recording directory counts (see below).
 - `CDBM_EDITOR` (default to `EDITOR`, or `vim` if `EDITOR` is not set): set to your favorite editor (e.g. `vim`) to be used in `cdbm -e` (see above).
 - `CDBM_ECHO` (default unset): set to `1` to echo the path to `cd` before `cd`
 
