@@ -3,6 +3,7 @@ from pathlib import Path
 import sys
 import shutil
 from dataclasses import dataclass
+import subprocess
 
 from cdbm import files
 from cdbm import envs
@@ -178,3 +179,9 @@ OPTION (mutually exclusive)
     -l          print the bookmark definitions
     -c          print the access counts of each bookmarked directory
     -e          edit the bookmark definition file''')
+
+
+def edit_config_file():
+    cdbm_file = files.get_config_file()
+    editor = envs.get_editor()
+    subprocess.run([editor, str(cdbm_file)])
