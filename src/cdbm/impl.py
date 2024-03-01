@@ -4,6 +4,7 @@ import sys
 import shutil
 from dataclasses import dataclass
 import subprocess
+import logging
 
 from cdbm import files
 from cdbm import envs
@@ -17,9 +18,7 @@ class BookmarkEntry:
 
 def select_path(key: str):
     """
-    Return the path of the first bookmark named ``key``.
-    ``KeyError`` is raised if ``key`` is not found.
-    Will also increment to the count file if allowed.
+    Print the corresponding path and return ``True`` if ``key`` is found.
     """
     cdbm_file = files.get_config_file()
     found = None
@@ -38,10 +37,13 @@ def select_path(key: str):
                     found = Path(tokens[1])
                     break
     except FileNotFoundError:
-        raise KeyError('cdbm file not found')
+        logging.error('cdbm file is empty!')
+        return False
     if not found:
-        raise KeyError(f'key "{key} not found')
-    return found
+        logging.error('key "%s" not found', key)
+        return False
+    print(found, end='')
+    return True
 
 
 def increment_count_file(key: str):
