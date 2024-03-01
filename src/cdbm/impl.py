@@ -221,7 +221,8 @@ def query_path(query: str):
         '--preview-window=wrap',
     ]
     key = subprocess.run(
-        cmd, text=True, input=stdin, capture_output=True).stdout.rstrip('\n')
+        cmd, text=True, input=stdin,
+        stdout=subprocess.PIPE).stdout.rstrip('\n')
     if not key:
         return
     select_path(key)
