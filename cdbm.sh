@@ -55,7 +55,7 @@ EOF
 
 		local selkey="$(sed '/^#/d' "$bmfile" \
 			| cut -d' ' -f1 \
-			| fzf --no-multi --select-1 --query="$*")"
+			| fzf --no-multi --select-1 --query="$*" --preview="python3 '$cdbm_basedir/select_cdbm.py' '$bmfile' {}" --preview-window=wrap)"
 		if [ -z "$selkey" ]; then
 			return 130
 		fi
