@@ -34,7 +34,7 @@ def select_path(key: str):
                 if len(tokens) != 2:
                     continue
                 if key == tokens[0]:
-                    found = Path(tokens[1])
+                    found = Path(tokens[1]).expanduser()
                     break
     except FileNotFoundError:
         logging.error('cdbm file is empty!')
