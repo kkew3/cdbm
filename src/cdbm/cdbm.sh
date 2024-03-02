@@ -41,6 +41,9 @@ cdbm() {
         shift
     done
     if [ -z $fun ]; then
+        if [ "$1" = "--" ]; then
+            shift
+        fi
         fun=query
         q="$*"
     fi

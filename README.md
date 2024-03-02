@@ -16,7 +16,7 @@ Full help message:
 
 
 ```
-cdbm [OPTION | <QUERY>]
+cdbm [OPTION | [--] <QUERY>]
 
 OPTION (mutually exclusive)
 
