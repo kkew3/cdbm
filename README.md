@@ -49,7 +49,7 @@ OS: No plan to support Windows currently, but WSL could be (not tested) acceptab
 
 Python: need to have `python3` in `PATH`, with Python>=3.7.
 
-Other binaries: [`fzf`](https://github.com/junegunn/fzf) is required.
+Other binaries: [`fzf`](https://github.com/junegunn/fzf) is recommended to install, in order to enable fuzzy match of bookmark keys and interactive filtering.
 
 ## Environment variables
 

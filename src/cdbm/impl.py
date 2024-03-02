@@ -215,9 +215,16 @@ def query_path(query: str):
         '--preview=cdbm select {}',
         '--preview-window=wrap',
     ]
-    key = subprocess.run(
-        cmd, text=True, input=stdin,
-        stdout=subprocess.PIPE).stdout.rstrip('\n')
+    try:
+        key = subprocess.run(
+            cmd, text=True, input=stdin,
+            stdout=subprocess.PIPE).stdout.rstrip('\n')
+    except FileNotFoundError:
+        if query in keys:
+            key = query
+        else:
+            logging.error('no match found')
+            key = None
     if not key:
         return
     if select_path(key):
