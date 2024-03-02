@@ -74,7 +74,13 @@ Plug 'kkew3/cdbm.vim'
 
 ## Related projects
 
-Until recently, I find that the idea of bookmarking directories was first sourced from [mokemokechicken's post](https://qiita.com/mokemokechicken/items/69af0db3e2cd27c1c467), which was then extended by [mollifier's cd-bookmark](https://github.com/mollifier/cd-bookmark).
+### Directory bookmarking
+
+mokemokechicken [posted](https://qiita.com/mokemokechicken/items/69af0db3e2cd27c1c467) his idea on bookmarking directories in 2014, which was then extended by [mollifier's cd-bookmark](https://github.com/mollifier/cd-bookmark). huyng also authored a popular [bashmarks](https://github.com/huyng/bashmarks) project in 2014. ybda maintains [shmarks](https://github.com/ybda/shmarks) from 2023.
+
+This project differs from the above in the support of `fzf`.
+
+### General directory switching
 
 [ajeetdsouza's zoxide](https://github.com/ajeetdsouza/zoxide) is a popular Rust utility whose vision is to be a smarter cd command.
 It should be noted that the idea of bookmarking directories is different from Zoxide.
