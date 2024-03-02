@@ -6,34 +6,30 @@
 
 ## Usage
 
+To `cd` to the bookmark whose name matches `QUERY`, simply
 
-```
-cdbm -e
-```
-
-edit the bookmark file located at `~/.config/cdbm/cdbm`.
-The format each line is `<bookmark_name><space><directory>`.
-The `<bookmark_name>` must not contain any whitespace characters or `#` character.
-The `<directory>` entry is allowed to contain whitespace characters `<space>` and `<tab>` and `#` character.
-
-```
-cdbm -l
+```bash
+cdbm QUERY
 ```
 
-list current bookmarks in `~/.config/cdbm/cdbm` and color the bookmark names in red.
+Full help message:
 
 
 ```
-cdbm [<query>]
-```
+cdbm [OPTION | <QUERY>]
 
-enter the [`fzf`](https://github.com/junegunn/fzf) interactive interface and select the bookmarked directory to go to.
+OPTION (mutually exclusive)
 
+    -h          print this message and exit
+    -l          print the bookmark definitions
+    -c          print the access counts of each bookmarked directory
+    -e          edit the bookmark definition file
+    -n <KEY>    append current working directory to bookmark definitions
+    +n <KEY>    prepend current working directory to bookmark definitions
+    -k          check and warn inactive bookmarks (ones that share the same keys
+                as the entries defined before them)
+    +k          remove inactive bookmarks
 ```
-cdbm -c
-```
-
-print stats of visited directories in descending order.
 
 
 ## Installation
@@ -64,7 +60,7 @@ These environment variables can be exported to change the behavior of `cdbm`:
 `~/.config/cdbm` directory will be created if not exists.
 This directory will be used to hold:
 
-- `~/.config/cdbm/cdbm`: The bookmark file, which defines all bookmarked directories. You may freely edit yourself.
+- `~/.config/cdbm/cdbm`: The bookmark file, which defines all bookmarked directories. You may freely edit yourself. The format of each line is: either `<bookmark-key> <path>` for bookmark, or `# ...` for comment.
 - `~/.config/cdbm/count`: A json file containing how many times you've used `cdbm` on each bookmarked directory.
 
 ## Companion Vim ftplugin
