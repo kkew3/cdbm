@@ -220,7 +220,8 @@ def query_path(query: str):
          'ctrl-l:down+down+down+accept'),
         ('--header='
          'Shortcuts: <enter> for the 1st, '
-         '<ctrl-j/k/l> for the 2nd/3rd/4th')
+         '<ctrl-j/k/l> for the 2nd/3rd/4th'),
+        '--header-first',
     ]
     try:
         key = subprocess.run(
