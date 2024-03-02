@@ -1,24 +1,35 @@
 cdbm() {
     local fun=
     local q=
-    case "$1" in
-        -h)
-            fun=help
-            ;;
-        -l)
-            fun=list-bm
-            ;;
-        -c)
-            fun=list-ct
-            ;;
-        -e)
-            fun=edit-bm
-            ;;
-        *)
-            fun=query
-            q="$*"
-            ;;
-    esac
+    while getopts ":hlce" arg "$@"; do
+        case $arg in
+            h)
+                fun=help
+                ;;
+            l)
+                fun=list-bm
+                ;;
+            c)
+                fun=list-ct
+                ;;
+            e)
+                fun=edit-bm
+                ;;
+            ?)
+                echo "ERROR: unknown option '$OPTARG'" >&2
+                return 1
+                ;;
+            :)
+                echo "ERROR: missing argument in option '$OPTARG'" >&2
+                return 1
+                ;;
+        esac
+        shift
+    done
+    if [ -z $fun ]; then
+        fun=query
+        q="$*"
+    fi
 
     local ret_path=
     case $fun in
