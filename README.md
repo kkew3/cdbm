@@ -1,5 +1,7 @@
 # cdbm -- cd bookmark
 
+![demo](assets/demo.gif)
+
 ## Introduction
 
 `cdbm` is a Python-based utility that bookmarks directories one wishes to `cd` quickly.
