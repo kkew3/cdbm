@@ -9,7 +9,7 @@ if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
 fi
 
 # === Check dependencies ===
-if ! command which -s python3; then
+if ! command which python3 > /dev/null; then
     echo "python3 must be installed to run this script!" >&2
     exit 1
 fi
