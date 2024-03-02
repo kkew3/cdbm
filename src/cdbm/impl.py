@@ -5,6 +5,7 @@ import shutil
 from dataclasses import dataclass
 import subprocess
 import logging
+import io
 
 from cdbm import files
 from cdbm import envs
@@ -229,6 +230,34 @@ def init_shell():
         shutil.copyfileobj(infile, sys.stdout.buffer)
 
 
+def _get_cwd():
+    # not using Path.cwd() to prevent resolving symbolic link
+    return Path(
+        subprocess.run(['pwd'], text=True,
+                       capture_output=True).stdout.rstrip('\n'))
+
+
+def append_cwd(key: str):
+    cwd = _get_cwd()
+    cdbm_file = files.get_config_file()
+    with open(cdbm_file, 'a', encoding='utf-8') as outfile:
+        outfile.write(f'{key} {cwd}\n')
+
+
+def prepend_cwd(key: str):
+    cwd = _get_cwd()
+    cdbm_file = files.get_config_file()
+    try:
+        with open(cdbm_file, encoding='utf-8') as infile:
+            cbuf = io.StringIO(infile.read())
+    except FileNotFoundError:
+        cbuf = None
+    with open(cdbm_file, 'w', encoding='utf-8') as outfile:
+        outfile.write(f'{key} {cwd}\n')
+        if cbuf:
+            outfile.write(cbuf.read())
+
+
 def main():
     logging.basicConfig(format='%(levelname)s: %(message)s')
     if sys.argv[1] == 'select':
@@ -247,3 +276,9 @@ def main():
         edit_config_file()
     elif sys.argv[1] == 'init':
         init_shell()
+    elif sys.argv[1] == 'append-cwd':
+        key = sys.argv[2]
+        append_cwd(key)
+    elif sys.argv[1] == 'prepend-cwd':
+        key = sys.argv[2]
+        prepend_cwd(key)

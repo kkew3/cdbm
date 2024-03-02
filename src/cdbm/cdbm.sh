@@ -1,7 +1,7 @@
 cdbm() {
     local fun=
     local q=
-    while getopts ":hlce" arg "$@"; do
+    while getopts ":hlcen:" arg "$@"; do
         case $arg in
             h)
                 fun=help
@@ -14,6 +14,14 @@ cdbm() {
                 ;;
             e)
                 fun=edit-bm
+                ;;
+            n)
+                fun=append-cwd
+                q="$OPTARG"
+                ;;
+            +n)
+                fun=prepend-cwd
+                q="$OPTARG"
                 ;;
             ?)
                 echo "ERROR: unknown option '$OPTARG'" >&2
@@ -39,6 +47,9 @@ cdbm() {
                 [ "$CDBM_ECHO" = "1" ] && echo "$ret_path"
                 cd "$ret_path"
             fi
+            ;;
+        append-cwd|prepend-cwd)
+            command cdbm $fun "$q"
             ;;
         *)
             command cdbm $fun

@@ -6,3 +6,5 @@ OPTION (mutually exclusive)
     -l          print the bookmark definitions
     -c          print the access counts of each bookmarked directory
     -e          edit the bookmark definition file
+    -n <KEY>    append current working directory to bookmark definitions
+    +n <KEY>    prepend current working directory to bookmark definitions
