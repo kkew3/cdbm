@@ -88,3 +88,9 @@ With bookmarking, one may alias a directory with a totally different (simpler) n
 For example, a directory might be named "机器学习" for clarity, but it's not convenient to type.
 One may alias it the name "ml" in the bookmark definition, and type directly "ml" to go to that directory.
 This use case cannot be achieved with Zoxide.
+
+## Design choices
+
+### Why not Rust
+
+Indeed, Rust is faster, but current `cdbm` is fast enough for my use case.
