@@ -1,7 +1,7 @@
 cdbm() {
     local fun=
     local q=
-    while getopts ":hlcen:" arg "$@"; do
+    while getopts ":hlcen:k" arg "$@"; do
         case $arg in
             h)
                 fun=help
@@ -22,6 +22,12 @@ cdbm() {
             +n)
                 fun=prepend-cwd
                 q="$OPTARG"
+                ;;
+            k)
+                fun=warn-inactive
+                ;;
+            +k)
+                fun=rm-inactive
                 ;;
             ?)
                 echo "ERROR: unknown option '$OPTARG'" >&2

@@ -8,3 +8,6 @@ OPTION (mutually exclusive)
     -e          edit the bookmark definition file
     -n <KEY>    append current working directory to bookmark definitions
     +n <KEY>    prepend current working directory to bookmark definitions
+    -k          check and warn inactive bookmarks (ones that share the same keys
+                as the entries defined before them)
+    +k          remove inactive bookmarks

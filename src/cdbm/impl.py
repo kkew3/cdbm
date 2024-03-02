@@ -258,6 +258,66 @@ def prepend_cwd(key: str):
             outfile.write(cbuf.read())
 
 
+def warn_inactive():
+    cdbm_file = files.get_config_file()
+    present_keys = {}
+    if sys.stdout.isatty():
+        KEY = '\033[1;31m'  # bold red
+        LINENO = '\033[0;32m'  # green
+        RESET = '\033[0m'
+    else:
+        KEY = LINENO = RESET = ''
+    try:
+        with open(cdbm_file, encoding='utf-8') as infile:
+            for j, line in enumerate(infile, 1):
+                line = line.rstrip('\n')
+                # skip empty lines and comments
+                if not line or line.startswith('#'):
+                    continue
+                tokens = line.split(maxsplit=1)
+                # skip malformed lines
+                if len(tokens) != 2:
+                    continue
+                key, path = tokens
+                if key not in present_keys:
+                    present_keys[key] = path
+                else:
+                    print(f'{LINENO}{j}{RESET}:{KEY}{key}{RESET} {path}')
+    except FileNotFoundError:
+        pass
+
+
+def rm_inactive():
+    cdbm_file = files.get_config_file()
+    present_keys = set()
+    cbuf = io.StringIO()
+    try:
+        with open(cdbm_file, encoding='utf-8') as infile:
+            for j, line in enumerate(infile, 1):
+                line = line.rstrip('\n')
+                # keep all empty lines and comments
+                if not line or line.startswith('#'):
+                    cbuf.write(f'{line}\n')
+                    continue
+                tokens = line.split(maxsplit=1)
+                # keep all malformed lines
+                if len(tokens) != 2:
+                    cbuf.write(f'{line}\n')
+                    continue
+                key, path = tokens
+                if key not in present_keys:
+                    present_keys.add(key)
+                    cbuf.write(f'{line}\n')
+                else:
+                    logging.warning('stripped line %d: %s', j, line)
+    except FileNotFoundError:
+        # nothing to remove
+        return
+    cbuf.seek(0)
+    with open(cdbm_file, 'w', encoding='utf-8') as outfile:
+        outfile.write(cbuf.read())
+
+
 def main():
     logging.basicConfig(format='%(levelname)s: %(message)s')
     if sys.argv[1] == 'select':
@@ -282,3 +342,7 @@ def main():
     elif sys.argv[1] == 'prepend-cwd':
         key = sys.argv[2]
         prepend_cwd(key)
+    elif sys.argv[1] == 'warn-inactive':
+        warn_inactive()
+    elif sys.argv[1] == 'rm-inactive':
+        rm_inactive()
