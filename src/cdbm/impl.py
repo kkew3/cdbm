@@ -214,6 +214,13 @@ def query_path(query: str):
         query,
         '--preview=cdbm select {}',
         '--preview-window=wrap',
+        ('--bind='
+         'ctrl-j:down+accept,'
+         'ctrl-k:down+down+accept,'
+         'ctrl-l:down+down+down+accept'),
+        ('--header='
+         'Shortcuts: <enter> for the 1st, '
+         '<ctrl-j/k/l> for the 2nd/3rd/4th')
     ]
     try:
         key = subprocess.run(
